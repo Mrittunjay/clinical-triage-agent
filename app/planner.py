@@ -4,6 +4,7 @@ from app.agents.librarian_fhir import (fetch_patient_history,
                                        save_triage_record, 
                                        save_final_decision)
 from app.services.content_safety import analyze_text_safety
+from app.services.openai_client import planner_llm
 
 def run_triage(payload: dict) -> dict:
     """
@@ -22,6 +23,22 @@ def run_triage(payload: dict) -> dict:
 
     patient_history = fetch_patient_history(patient_id)
 
+    llm_prompt = f"""
+                Patient intake:
+                Chief complaint: {intake.get("chiefComplaint")}
+                Symptoms: {intake.get("symptoms")}
+                Vitals: {intake.get("vitals")}
+
+                Patient history: {patient_history}
+
+                Task:
+                Classify triage level as RED, YELLOW or GREEN.
+                Explain resoning briefly.
+                Suggest relevent tests if applicable.
+                """
+    
+    ai_resoning = planner_llm(llm_prompt)
+
     expert_result = evaluate_triage(intake)
 
     # Save triage proposal to EHR (pending human approval)
@@ -31,6 +48,7 @@ def run_triage(payload: dict) -> dict:
         "message":"Planner received triage request",
         "patient_id": patient_id,
         "received_payload": intake,
+        "ai_resoning": ai_resoning,
         "triage_result": expert_result,
         "patient_history": patient_history,
         "input_content_safety": input_content_safety,
