@@ -1,5 +1,5 @@
 from app.agents.receptionist import normalize_intake
-from app.agents.expert_rag import evaluate_triage
+from app.agents.expert_rag import expert_triage
 from app.agents.librarian_fhir import (fetch_patient_history, 
                                        save_triage_record, 
                                        save_final_decision)
@@ -39,7 +39,7 @@ def run_triage(payload: dict) -> dict:
     
     ai_resoning = planner_llm(llm_prompt)
 
-    expert_result = evaluate_triage(intake)
+    expert_result = expert_triage(intake)
 
     # Save triage proposal to EHR (pending human approval)
     save_triage_record(patient_id, expert_result)
