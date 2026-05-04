@@ -1,0 +1,335 @@
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Patient Intake</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      padding: 20px;
+    }
+
+    #chat {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 15px;
+      border-radius: 6px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .message {
+      margin-bottom: 10px;
+    }
+
+    .assistant {
+      color: #333;
+    }
+
+    .patient {
+      color: #0066cc;
+      text-align: right;
+    }
+
+    #inputArea {
+      margin-top: 15px;
+      display: flex;
+      gap: 10px;
+    }
+
+    input[type="text"] {
+      flex: 1;
+      padding: 8px;
+    }
+
+    button {
+      padding: 8px 14px;
+      cursor: pointer;
+    }
+
+    #startBtn {
+      margin-bottom: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="chat">
+    <h2>Emergency Intake</h2>
+
+    <button id="startBtn">Start Intake</button>
+
+    <div id="messages"></div>
+
+    <div id="inputArea" style="display:none;">
+      <input type="text" id="userInput" placeholder="Type your answer..." />
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+
+<script>
+  let sessionId = null;
+
+  const messagesDiv = document.getElementById("messages");
+  const startBtn = document.getElementById("startBtn");
+  const inputArea = document.getElementById("inputArea");
+  const userInput = document.getElementById("userInput");
+
+  function addMessage(text, role) {
+    const div = document.createElement("div");
+    div.className = `message ${role}`;
+    div.innerText = text;
+    messagesDiv.appendChild(div);
+    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+  }
+
+  startBtn.onclick = async () => {
+    const res = await fetch("/intake/start", {
+      method: "POST"
+    });
+    const data = await res.json();
+
+    sessionId = data.sessionId;
+    startBtn.style.display = "none";
+    inputArea.style.display = "flex";
+
+    addMessage(data.message, "assistant");
+  };
+
+  async function sendMessage() {
+    const text = userInput.value.trim();
+    if (!text) return;
+
+    addMessage(text, "patient");
+    userInput.value = "";
+
+    const res = await fetch("/intake/message", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        sessionId: sessionId,
+        message: text
+      })
+    });
+
+    const data = await res.json();
+
+    if (data.status === "IN_PROGRESS" && data.message) {
+      addMessage(data.message, "assistant");
+    }
+
+    if (data.status === "COMPLETE") {
+      addMessage("Thank you. Intake complete.", "assistant");
+
+      addMessage(
+        "Triage Result: " + JSON.stringify(data.triageResult, null, 2),
+        "assistant"
+      );
+
+      inputArea.style.display = "none";
+    }
+  }
+</script>
+
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Emergency Intake</title>
+
+  <style>
+    body {
+      font-family: "Segoe UI", Roboto, Arial, sans-serif;
+      background: linear-gradient(120deg, #e8f0ff, #f7fafc);
+      padding: 40px;
+    }
+
+    #chat {
+      max-width: 640px;
+      margin: auto;
+      background: #ffffff;
+      padding: 24px;
+      border-radius: 10px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    }
+
+    h2 {
+      margin-top: 0;
+      color: #1f3a8a;
+      text-align: center;
+    }
+
+    #messages {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .message {
+      max-width: 80%;
+      padding: 10px 14px;
+      border-radius: 8px;
+      line-height: 1.4;
+      font-size: 14px;
+      white-space: pre-wrap;
+    }
+
+    .assistant {
+      align-self: flex-start;
+      background: #eef2ff;
+      color: #1e3a8a;
+    }
+
+    .patient {
+      align-self: flex-end;
+      background: #dbeafe;
+      color: #1e40af;
+    }
+
+    #inputArea {
+      margin-top: 20px;
+      display: flex;
+      gap: 10px;
+    }
+
+    input[type="text"] {
+      flex: 1;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #cbd5f5;
+      font-size: 14px;
+    }
+
+    input[type="text"]:focus {
+      outline: none;
+      border-color: #6366f1;
+    }
+
+    button {
+      padding: 10px 18px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    #startBtn {
+      width: 100%;
+      background: #1e3a8a;
+      color: white;
+    }
+
+    #startBtn:hover {
+      background: #1e40af;
+    }
+
+    .sendBtn {
+      background: #2563eb;
+      color: white;
+    }
+
+    .sendBtn:hover {
+      background: #1e40af;
+    }
+
+    .footer-note {
+      margin-top: 16px;
+      font-size: 12px;
+      color: #64748b;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="chat">
+    <h2>Emergency Intake</h2>
+
+    <button id="startBtn">Start Intake</button>
+
+    <div id="messages"></div>
+
+    <div id="inputArea" style="display:none;">
+      <input type="text" id="userInput" placeholder="Type your answer..." />
+      <button class="sendBtn" onclick="sendMessage()">Send</button>
+    </div>
+
+    <div class="footer-note">
+      This system assists clinicians. Final decisions are made by medical staff.
+    </div>
+  </div>
+
+<script>
+  let sessionId = null;
+
+  const messagesDiv = document.getElementById("messages");
+  const startBtn = document.getElementById("startBtn");
+  const inputArea = document.getElementById("inputArea");
+  const userInput = document.getElementById("userInput");
+
+  function addMessage(text, role) {
+    const div = document.createElement("div");
+    div.className = `message ${role}`;
+    div.innerText = text;
+    messagesDiv.appendChild(div);
+    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+  }
+
+  startBtn.onclick = async () => {
+    const res = await fetch("/intake/start", { method: "POST" });
+    const data = await res.json();
+
+    sessionId = data.sessionId;
+    startBtn.style.display = "none";
+    inputArea.style.display = "flex";
+
+    addMessage(data.message, "assistant");
+  };
+
+  async function sendMessage() {
+    const text = userInput.value.trim();
+    if (!text) return;
+
+    addMessage(text, "patient");
+    userInput.value = "";
+
+    const res = await fetch("/intake/message", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ sessionId, message: text })
+    });
+
+    const data = await res.json();
+
+    if (data.status === "IN_PROGRESS" && data.message) {
+      addMessage(data.message, "assistant");
+      return;
+    }
+
+    if (data.status === "COMPLETE") {
+      addMessage("Thank you. Intake complete.", "assistant");
+
+      if (data.triageResult) {
+        addMessage(
+          "Triage Result:\n" +
+          JSON.stringify(data.triageResult, null, 2),
+          "assistant"
+        );
+      }
+
+      inputArea.style.display = "none";
+    }
+  }
+</script>
+
+</body>
+</html>
