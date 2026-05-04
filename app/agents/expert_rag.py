@@ -33,17 +33,25 @@ def evaluate_triage(intake: dict) -> dict:
 
     vitals = intake.get("vitals", {})
     symptoms = intake.get("symptoms", [])
+    
+    heart_rate = vitals.get("heartRate")
+    spo2 = vitals.get("spo2")
 
-    heart_rate = vitals.get("heartRate", -1)
-    spo2 = vitals.get("spo2", -1)
+    chief_complaint = intake.get("chiefComplaint", "").lower()
 
-    # RED Criteria
-    if spo2 < 94 or heart_rate > 100 or "chest pain" in intake.get("chiefComplaint", ""):
+    # RED criteria – check vitals only if present
+    if (
+        ("chest pain" in chief_complaint)
+        or (spo2 is not None and spo2 < 94)
+        or (heart_rate is not None and heart_rate > 100)
+    ):
         return {
             "triageColor": "RED",
-            "reason": "High-risk vitals or symptoms detected",
-            "suggestedTests": ["ECG", "Troponin"]
+            "reason": "High-risk symptoms or abnormal vitals detected",
+            "suggestedTests": ["ECG", "Troponin"],
+            "source": "RuleBasedExpert"
         }
+
 
     # YELLOW Criteria
     if symptoms:
