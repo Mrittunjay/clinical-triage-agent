@@ -52,3 +52,19 @@ app/
 ├── main.py                  # FastAPI entry point
 
 └── models.py                # Shared data models
+
+
+**Steps to run the project:**
+- Clone the repo main branch to PC
+- Open the repo in VS Code or any other code editor of your choice (setps details is for VS Code if you are using different IDE the steps will be similar)
+- Open the VS Code terminal, nevigate to he project folder and create a python virtual environment:
+  python -m venv .venv  (.venv folder will be created inside your project folder)
+- Activate the virtual environment by running the following command in your terminal:
+  .\.venv\Scripts\activate
+- Install requirements for the project:
+  pip install -r requirements.txt
+- To run the application server locally on your PC run the following command in the terminal.
+  uvicorn app.main:app --reload
+- Now to check the minimal Receptionist conversational intake agent open the following local host link in your suitable browser and start intake.
+  http://127.0.0.1:8000/ui/intake.html
+  <img width="543" height="414" alt="image" src="https://github.com/user-attachments/assets/7adfde05-0e46-49c1-bbaf-de42e23cbd8e" />
