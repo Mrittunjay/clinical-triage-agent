@@ -54,17 +54,26 @@ app/
 └── models.py                # Shared data models
 
 
-**Steps to run the project:**
+**Steps to run the project (Project is still under construction):**
 - Clone the repo main branch to PC
-- Open the repo in VS Code or any other code editor of your choice (setps details is for VS Code if you are using different IDE the steps will be similar)
-- Open the VS Code terminal, nevigate to he project folder and create a python virtual environment:
-  python -m venv .venv  (.venv folder will be created inside your project folder)
+- Open the repo in VS Code or any other code editor of your choice (setps detail is for VS Code if you are using different IDE the steps will be similar)
+- Open the VS Code terminal, nevigate to the project folder and create a python virtual environment:
+
+  `python -m venv .venv  (.venv folder will be created inside your project folder)`
 - Activate the virtual environment by running the following command in your terminal:
-  .\.venv\Scripts\activate
+
+  `.\.venv\Scripts\activate`
 - Install requirements for the project:
-  pip install -r requirements.txt
+
+  `pip install -r requirements.txt`
 - To run the application server locally on your PC run the following command in the terminal.
-  uvicorn app.main:app --reload
+
+  `uvicorn app.main:app --reload`
 - Now to check the minimal Receptionist conversational intake agent open the following local host link in your suitable browser and start intake.
-  http://127.0.0.1:8000/ui/intake.html
+
+  `http://127.0.0.1:8000/ui/intake.html`
   <img width="543" height="414" alt="image" src="https://github.com/user-attachments/assets/7adfde05-0e46-49c1-bbaf-de42e23cbd8e" />
+- If you want to test each of the get and post end-points of the application you can use the Swagger UI feature of FastAPI, open the following link to access it:
+
+  `http://127.0.0.1:8000/docs`
+  <img width="927" height="391" alt="image" src="https://github.com/user-attachments/assets/2e5cb4c2-558b-432b-b237-cef11d2b4d4b" />
