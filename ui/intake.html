@@ -1,3 +1,232 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Emergency Intake</title>
+
+  <style>
+    body {
+      font-family: "Segoe UI", Roboto, Arial, sans-serif;
+      background: linear-gradient(120deg, #e8f0ff, #f7fafc);
+      padding: 40px;
+    }
+
+    #chat {
+      max-width: 720px;
+      margin: auto;
+      background: #ffffff;
+      padding: 24px;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    }
+
+    h2 {
+      margin-top: 0;
+      color: #1f3a8a;
+      text-align: center;
+    }
+
+    /* admin panel */
+    .config-panel {
+      border: 1px solid #e5e7eb;
+      background: #f9fafb;
+      padding: 12px;
+      border-radius: 8px;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 16px;
+      font-size: 13px;
+    }
+
+    .config-panel label {
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .config-panel input,
+    .config-panel select {
+      padding: 6px;
+      font-size: 13px;
+    }
+
+    .config-panel button {
+      padding: 6px 14px;
+      background: #1e3a8a;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    #messages {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .message {
+      max-width: 80%;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    .assistant {
+      align-self: flex-start;
+      background: #eef2ff;
+    }
+
+    .patient {
+      align-self: flex-end;
+      background: #dbeafe;
+    }
+
+    #inputArea {
+      margin-top: 20px;
+      display: none;
+      gap: 10px;
+    }
+
+    #inputArea input {
+      flex: 1;
+      padding: 8px;
+      font-size: 14px;
+    }
+
+    button.primary {
+      width: 100%;
+      margin-top: 10px;
+      padding: 10px;
+      background: #2563eb;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+<div id="chat">
+  <h2>Emergency Intake</h2>
+
+  <div class="config-panel"> 
+    <label>Protocol</label>
+    <select id="protocolSelect">
+      <option value="ATP">ATP</option>
+      <option value="NTS">NTS</option>
+    </select>
+
+    <input type="text" id="adminUser" placeholder="Username" />
+    <input type="password" id="adminPass" placeholder="Password" />
+
+    <button onclick="applyProtocol()">Apply</button>
+  </div>
+
+  <button class="primary" id="startBtn">Start Intake</button>
+
+  <div id="messages"></div>
+
+  <div id="inputArea">
+    <input type="text" id="userInput" placeholder="Type your answer..." />
+    <button onclick="sendMessage()">Send</button>
+  </div>
+</div>
+
+<script>
+  const ADMIN_USER = "admin";
+  const ADMIN_PASS = "admin123";
+
+  fetch("/admin/config")
+    .then(r => r.json())
+    .then(cfg => {
+      document.getElementById("protocolSelect").value = cfg.triageStandard;
+    });
+
+  async function applyProtocol() {
+    const user = adminUser.value;
+    const pass = adminPass.value;
+
+    if (user !== ADMIN_USER || pass !== ADMIN_PASS) {
+      alert("Invalid admin credentials");
+      return;
+    }
+
+    await fetch("/admin/config", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ triageStandard: protocolSelect.value })
+    });
+
+    alert("Protocol updated");
+    adminUser.value = "";
+    adminPass.value = "";
+  }
+
+  let sessionId = null;
+
+  function addMessage(text, role) {
+    const div = document.createElement("div");
+    div.className = `message ${role}`;
+    div.textContent = text;
+    messages.appendChild(div);
+  }
+
+  startBtn.onclick = async () => {
+    const res = await fetch("/intake/start", { method: "POST" });
+    const data = await res.json();
+    sessionId = data.sessionId;
+    inputArea.style.display = "flex";
+    addMessage(data.message, "assistant");
+  };
+
+  async function sendMessage() {
+    if (!userInput.value.trim()) return;
+
+    addMessage(userInput.value, "patient");
+
+    const res = await fetch("/intake/message", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ sessionId, message: userInput.value })
+    });
+
+    const data = await res.json();
+
+    if (data.status === "IN_PROGRESS" && data.message) {
+      addMessage(data.message, "assistant");
+      userInput.value = "";
+      return;
+    }
+    if (data.status === "COMPLETE") {
+      addMessage("Thank you. Intake complete.", "assistant");
+
+      if (data.triageResult) {
+        addMessage(
+          "Triage Result:\n" +
+          JSON.stringify(data.triageResult, null, 2),
+          "assistant"
+        );
+      }
+
+      inputArea.style.display = "none";
+      userInput.value = "";
+    }
+  }
+</script>
+
+</body>
+</html> -->
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,11 +241,11 @@
     }
 
     #chat {
-      max-width: 640px;
+      max-width: 720px;
       margin: auto;
       background: #ffffff;
       padding: 24px;
-      border-radius: 10px;
+      border-radius: 12px;
       box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
     }
 
@@ -24,6 +253,89 @@
       margin-top: 0;
       color: #1f3a8a;
       text-align: center;
+    }
+
+    /* ✅ Protocol header */
+    .protocol-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      padding: 10px 14px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      font-size: 14px;
+    }
+
+    .protocol-bar span {
+      font-weight: 600;
+    }
+
+    .protocol-bar button {
+      padding: 6px 12px;
+      background: #1e3a8a;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    /* ✅ Modal */
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.3);
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      width: 300px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+    }
+
+    .modal-content h3 {
+      margin-top: 0;
+      margin-bottom: 12px;
+      font-size: 16px;
+    }
+
+    .modal-content input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .modal-actions button {
+      flex: 1;
+      padding: 8px;
+      border-radius: 6px;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .confirm {
+      background: #2563eb;
+      color: white;
+    }
+
+    .cancel {
+      background: #e5e7eb;
     }
 
     #messages {
@@ -37,142 +349,156 @@
       max-width: 80%;
       padding: 10px 14px;
       border-radius: 8px;
-      line-height: 1.4;
       font-size: 14px;
-      white-space: pre-wrap;
     }
 
     .assistant {
       align-self: flex-start;
       background: #eef2ff;
-      color: #1e3a8a;
     }
 
     .patient {
       align-self: flex-end;
       background: #dbeafe;
-      color: #1e40af;
     }
 
     #inputArea {
       margin-top: 20px;
-      display: flex;
+      display: none;
       gap: 10px;
     }
 
-    input[type="text"] {
+    #inputArea input {
       flex: 1;
-      padding: 10px;
-      border-radius: 6px;
-      border: 1px solid #cbd5f5;
+      padding: 8px;
       font-size: 14px;
     }
 
-    input[type="text"]:focus {
-      outline: none;
-      border-color: #6366f1;
-    }
-
-    button {
-      padding: 10px 18px;
-      border-radius: 6px;
-      border: none;
-      cursor: pointer;
-      font-weight: 600;
-      font-size: 14px;
-    }
-
-    #startBtn {
+    button.primary {
       width: 100%;
-      background: #1e3a8a;
-      color: white;
-    }
-
-    #startBtn:hover {
-      background: #1e40af;
-    }
-
-    .sendBtn {
+      margin-top: 10px;
+      padding: 10px;
       background: #2563eb;
       color: white;
-    }
-
-    .sendBtn:hover {
-      background: #1e40af;
-    }
-
-    .footer-note {
-      margin-top: 16px;
-      font-size: 12px;
-      color: #64748b;
-      text-align: center;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
     }
   </style>
 </head>
 
 <body>
 
-  <div id="chat">
-    <h2>Emergency Intake</h2>
+<div id="chat">
+  <h2>Emergency Intake</h2>
 
-    <button id="startBtn">Start Intake</button>
-
-    <div id="messages"></div>
-
-    <div id="inputArea" style="display:none;">
-      <input type="text" id="userInput" placeholder="Type your answer..." />
-      <button class="sendBtn" onclick="sendMessage()">Send</button>
-    </div>
-
-    <div class="footer-note">
-      This system assists clinicians. Final decisions are made by medical staff.
-    </div>
+  <!-- ✅ Protocol display -->
+  <div class="protocol-bar">
+    <span>Protocol: <span id="protocolLabel">—</span></span>
+    <button onclick="openModal()">Change Protocol</button>
   </div>
 
+  <button class="primary" id="startBtn">Start Intake</button>
+
+  <div id="messages"></div>
+
+  <div id="inputArea">
+    <input type="text" id="userInput" placeholder="Type your answer..." />
+    <button onclick="sendMessage()">Send</button>
+  </div>
+</div>
+
+<!-- ✅ Change protocol modal -->
+<div class="modal" id="protocolModal">
+  <div class="modal-content">
+    <h3>Admin Authentication</h3>
+    <input type="text" id="adminUser" placeholder="Username" />
+    <input type="password" id="adminPass" placeholder="Password" />
+
+    <div class="modal-actions">
+      <button class="cancel" onclick="closeModal()">Cancel</button>
+      <button class="confirm" onclick="confirmProtocolChange()">Confirm</button>
+    </div>
+  </div>
+</div>
+
 <script>
+  const ADMIN_USER = "admin";
+  const ADMIN_PASS = "admin123";
+
+  let currentProtocol = null;
   let sessionId = null;
 
-  const messagesDiv = document.getElementById("messages");
-  const startBtn = document.getElementById("startBtn");
-  const inputArea = document.getElementById("inputArea");
-  const userInput = document.getElementById("userInput");
+  // ✅ Load protocol from backend
+  fetch("/admin/config")
+    .then(r => r.json())
+    .then(cfg => {
+      currentProtocol = cfg.triageStandard;
+      document.getElementById("protocolLabel").textContent = currentProtocol;
+    });
+
+  function openModal() {
+    document.getElementById("protocolModal").style.display = "flex";
+  }
+
+  function closeModal() {
+    document.getElementById("protocolModal").style.display = "none";
+    adminUser.value = "";
+    adminPass.value = "";
+  }
+
+  async function confirmProtocolChange() {
+    if (adminUser.value !== ADMIN_USER || adminPass.value !== ADMIN_PASS) {
+      alert("Invalid admin credentials");
+      return;
+    }
+
+    const newProtocol = currentProtocol === "ATP" ? "NTS" : "ATP";
+
+    await fetch("/admin/config", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ triageStandard: newProtocol })
+    });
+
+    currentProtocol = newProtocol;
+    document.getElementById("protocolLabel").textContent = currentProtocol;
+
+    closeModal();
+  }
 
   function addMessage(text, role) {
     const div = document.createElement("div");
     div.className = `message ${role}`;
-    div.innerText = text;
-    messagesDiv.appendChild(div);
-    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    div.textContent = text;
+    messages.appendChild(div);
   }
 
   startBtn.onclick = async () => {
     const res = await fetch("/intake/start", { method: "POST" });
     const data = await res.json();
-
     sessionId = data.sessionId;
-    startBtn.style.display = "none";
     inputArea.style.display = "flex";
-
     addMessage(data.message, "assistant");
   };
 
   async function sendMessage() {
-    const text = userInput.value.trim();
-    if (!text) return;
+    if (!userInput.value.trim()) return;
 
-    addMessage(text, "patient");
-    userInput.value = "";
+    addMessage(userInput.value, "patient");
 
     const res = await fetch("/intake/message", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ sessionId, message: text })
+      body: JSON.stringify({ sessionId, message: userInput.value })
     });
 
     const data = await res.json();
 
     if (data.status === "IN_PROGRESS" && data.message) {
       addMessage(data.message, "assistant");
+      userInput.value = "";
       return;
     }
 
@@ -188,6 +514,7 @@
       }
 
       inputArea.style.display = "none";
+      userInput.value = "";
     }
   }
 </script>
