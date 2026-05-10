@@ -1,14 +1,19 @@
-import os
 from enum import Enum
-from dotenv import load_dotenv
-
-load_dotenv()
+from threading import Lock
 
 class TriageStandard(str, Enum):
     NTS = "NTS"     # Netherlands Triage Standard
-    ITS = "ATP"     # AIIMS Triage Protocol(Indian Triage Standard)
+    ATP = "ATP"     # AIIMS Triage Protocol(Indian Triage Standard)
 
-# Read from environment variable
-TRIAGE_STANDARD = TriageStandard(
-    os.getenv("TRIAGE_STANDARD", "ATP")     # default to ATP
-)
+_config_lock = Lock()
+
+TRIAGE_STANDARD = TriageStandard.ATP    # Default
+
+def get_triage_standard() -> TriageStandard:
+    with _config_lock:
+        return TRIAGE_STANDARD
+    
+def set_triage_standard(value: str):
+    global TRIAGE_STANDARD
+    with _config_lock:
+        TRIAGE_STANDARD = TriageStandard(value)

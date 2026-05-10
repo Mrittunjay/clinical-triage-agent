@@ -7,6 +7,7 @@ from app.planner import run_triage
 # FastAPI uses Starlette’s StaticFiles to serve HTML, JS, CSS, etc.
 # To serve static files inside 'ui' folder.
 from fastapi.staticfiles import StaticFiles
+from app.config import get_triage_standard, set_triage_standard
 
 # Simple in-memory intake session
 INTAKE_SESSIONS: Dict[str, List[Dict[str, str]]] = {}
@@ -101,3 +102,12 @@ def intake_message(payload: Dict[str, str]):
         "intake": intake,
         "triageResult": triage_result
     }
+
+@app.get("/admin/config")
+def read_config():
+    return {"triageStandard": get_triage_standard().value}
+
+@app.post("/admin/config")
+def update_config(payload: dict):
+    set_triage_standard(payload["triageStandard"])
+    return {"status": "updated"}

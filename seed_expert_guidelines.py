@@ -264,6 +264,30 @@ ATP_DOCUMENTS = [
     "triageColor": "GREEN",
     "content": "Mild symptoms requiring reassurance only may be triaged GREEN.",
     "source": "AIIMS Triage Flow"
+  },
+  {
+    "id": "atp_eye_pain_yellow_31",
+    "standard": "ATP",
+    "category": "Opthalmology",
+    "triageColor": "YELLOW",
+    "content": "Eye pain with redness, irritation, or foreign body sensation without vision loss, truma or neurological deficts should be triage YELLOW for urgent opthalmologic evaluation",
+    "source": "AIIMS Opthalmology Emergency Guidelines"
+  },
+  {
+    "id": "atp_limb_pain_yellow_32",
+    "standard": "ATP",
+    "category": "Musculoskeletal",
+    "triageColor": "YELLOW",
+    "content": "Limb pain without deformity, neurovascular compromise, severe trauma, or systemic instability should be triaged YELLOW for assessment and pain management.",
+    "source": "AIIMS Opthalmology Emergency Guidelines"
+  },
+  {
+    "id": "atp_neck_swelling_airway_red_33",
+    "standard": "ATP",
+    "category": "Airway",
+    "triageColor": "RED",
+    "content": "Neck or throat swelling with potential airway compromise, difficulty swallowing, or hypoxia requires immediate RED triage due to risk of airway obstruction.",
+    "source": "AIIMS Airway Emergency Guidelines"
   }
 ]
 
@@ -508,6 +532,30 @@ NTS_DOCUMENTS = [
     "triageColor": "GREEN",
     "content": "Administrative, advice-only, or reassurance-only presentations are classified as U5.",
     "source": "Netherlands Triage Standard"
+  }, 
+  {
+    "id": "nts_eye_pain_u3_31",
+    "standard": "NTS",
+    "category": "Ophthalmology",
+    "triageColor": "YELLOW",
+    "content": "Eye pain with redness or irritation without vision loss, trauma, or severe systemic symptoms is classified as U3 urgency under the Netherlands Triage Standard.",
+    "source": "Netherlands Triage Standard - Eye Complaints"
+  },
+  {
+    "id": "nts_limb_pain_u3_32",
+    "standard": "NTS",
+    "category": "Musculoskeletal",
+    "triageColor": "YELLOW",
+    "content": "Limb pain without deformity, circulatory compromise, or neurological deficit is classified as U3 urgency under the Netherlands Triage Standard.",
+    "source": "Netherlands Triage Standard - Musculoskeletal Complaints"
+  },
+  {
+    "id": "nts_neck_swelling_u1_34",
+    "standard": "NTS",
+    "category": "Airway",
+    "triageColor": "RED",
+    "content": "Neck or throat swelling with potential airway compromise, stridor, dysphagia, or hypoxia is classified as U1 urgency under the Netherlands Triage Standard.",
+    "source": "Netherlands Triage Standard - Airway Emergencies"
   }
 ]
 
