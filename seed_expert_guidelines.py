@@ -414,7 +414,10 @@ NTS_DOCUMENTS = [
     "standard": "NTS",
     "category": "Airway",
     "triageColor": "RED",
-    "content": "Airway compromise or obstruction is classified as U1 urgency under the Netherlands Triage Standard. Recommended tests include airway assessment, pulse oximetry, and arterial blood gas if available.",
+    "content": (
+        "Airway compromise or obstruction is classified as U1 urgency under the Netherlands Triage Standard."
+        "Recommended tests include airway assessment, pulse oximetry, and arterial blood gas if available."
+    ),
     "source": "Netherlands Triage Standard (summarized)"
   },
   {
@@ -422,7 +425,10 @@ NTS_DOCUMENTS = [
     "standard": "NTS",
     "category": "Breathing",
     "triageColor": "RED",
-    "content": "Severe dyspnea with signs of fatigue or cyanosis corresponds to U1 urgency under NTS. Recommended tests include pulse oximetry, arterial blood gas, chest X-ray, and ECG.",
+    "content": (
+        "Severe dyspnea with signs of fatigue or cyanosis corresponds to U1 urgency under NTS." 
+        "Recommended tests include pulse oximetry, arterial blood gas, chest X-ray, and ECG."
+    ),
     "source": "Netherlands Triage Standard"
   },
   {
@@ -430,7 +436,10 @@ NTS_DOCUMENTS = [
     "standard": "NTS",
     "category": "Breathing",
     "triageColor": "RED",
-    "content": "Cyanosis or critically low oxygenation is triaged as U1 urgency under NTS. Recommended tests include pulse oximetry, arterial blood gas, and chest imaging.",
+    "content": (
+        "Cyanosis or critically low oxygenation is triaged as U1 urgency under NTS." 
+        "Recommended tests include pulse oximetry, arterial blood gas, and chest imaging."
+    ),
     "source": "Netherlands Triage Standard"
   },
   {
@@ -438,7 +447,10 @@ NTS_DOCUMENTS = [
     "standard": "NTS",
     "category": "Cardiac",
     "triageColor": "RED",
-    "content": "Thoracic pain suspected of cardiac origin with acute symptoms is classified as U1 urgency. Recommended tests include ECG, cardiac biomarkers, and chest X-ray.",
+    "content": (
+        "Thoracic pain suspected of cardiac origin with acute symptoms is classified as U1 urgency." 
+        "Recommended tests include ECG, cardiac biomarkers, and chest X-ray."
+    ),
     "source": "Netherlands Triage Standard"
   },
   {
@@ -446,7 +458,10 @@ NTS_DOCUMENTS = [
     "standard": "NTS",
     "category": "Neurology",
     "triageColor": "RED",
-    "content": "Sudden neurological deficits or reduced consciousness require U1 urgency under NTS. Recommended tests include blood glucose, CT brain, and basic blood investigations.",
+    "content": (
+        "Sudden neurological deficits or reduced consciousness require U1 urgency under NTS." 
+        "Recommended tests include blood glucose, CT brain, and basic blood investigations."
+    ),
     "source": "Netherlands Triage Standard"
   },
   {
@@ -454,7 +469,10 @@ NTS_DOCUMENTS = [
     "standard": "NTS",
     "category": "Neurology",
     "triageColor": "RED",
-    "content": "Active seizures or prolonged post-ictal unresponsiveness are classified as U1 urgency. Recommended tests include blood glucose, serum electrolytes, and EEG or neuroimaging as indicated.",
+    "content": (
+        "Active seizures or prolonged post-ictal unresponsiveness are classified as U1 urgency." 
+        "Recommended tests include blood glucose, serum electrolytes, and EEG or neuroimaging as indicated."
+    ),
     "source": "Netherlands Triage Standard"
   },
   {
@@ -462,7 +480,10 @@ NTS_DOCUMENTS = [
     "standard": "NTS",
     "category": "Circulation",
     "triageColor": "RED",
-    "content": "Hemodynamic instability or shock requires immediate U1 triage under NTS. Recommended tests include blood pressure monitoring, complete blood count, serum lactate, arterial blood gas, and ECG.",
+    "content": (
+        "Hemodynamic instability or shock requires immediate U1 triage under NTS." 
+        "Recommended tests include blood pressure monitoring, complete blood count, serum lactate, arterial blood gas, and ECG."
+    ),
     "source": "Netherlands Triage Standard"
   },
   {
@@ -470,7 +491,10 @@ NTS_DOCUMENTS = [
     "standard": "NTS",
     "category": "Trauma",
     "triageColor": "RED",
-    "content": "High-risk trauma presentations per NTS criteria are triaged as U1 urgency. Recommended tests include complete blood count, FAST ultrasound, and CT imaging as indicated.",
+    "content": (
+        "High-risk trauma presentations per NTS criteria are triaged as U1 urgency." 
+        "Recommended tests include complete blood count, FAST ultrasound, and CT imaging as indicated."
+    ),
     "source": "Netherlands Triage Standard"
   },
   {
@@ -478,7 +502,10 @@ NTS_DOCUMENTS = [
     "standard": "NTS",
     "category": "Neurology",
     "triageColor": "RED",
-    "content": "Suspected acute stroke is classified as U1 urgency to enable time-critical treatment. Recommended tests include blood glucose measurement and non-contrast CT brain.",
+    "content": (
+        "Suspected acute stroke is classified as U1 urgency to enable time-critical treatment." 
+        "Recommended tests include blood glucose measurement and non-contrast CT brain."
+    ),
     "source": "Netherlands Triage Standard"
   },
   {
@@ -486,7 +513,10 @@ NTS_DOCUMENTS = [
     "standard": "NTS",
     "category": "Abdominal",
     "triageColor": "RED",
-    "content": "Severe abdominal pain with suspected acute abdomen is triaged as U1 urgency. Recommended tests include complete blood count, serum electrolytes, and abdominal imaging.",
+    "content": (
+        "Severe abdominal pain with suspected acute abdomen is triaged as U1 urgency." 
+        "Recommended tests include complete blood count, serum electrolytes, and abdominal imaging."
+    ),
     "source": "Netherlands Triage Standard"
   },
   {
@@ -494,7 +524,10 @@ NTS_DOCUMENTS = [
     "standard": "NTS",
     "category": "Allergy",
     "triageColor": "RED",
-    "content": "Anaphylaxis or severe allergic response requires U1 urgency under NTS. Recommended assessments include airway and hemodynamic monitoring; laboratory tests are secondary.",
+    "content": (
+        "Anaphylaxis or severe allergic response requires U1 urgency under NTS." 
+        "Recommended assessments include airway and hemodynamic monitoring; laboratory tests are secondary."
+    ),
     "source": "Netherlands Triage Standard"
   },
   {
@@ -502,7 +535,10 @@ NTS_DOCUMENTS = [
     "standard": "NTS",
     "category": "Pediatrics",
     "triageColor": "RED",
-    "content": "Pediatric acute distress, lethargy, or poor perfusion are classified as U1 urgency. Recommended tests include blood glucose, venous blood gas, and basic blood investigations.",
+    "content": (
+        "Pediatric acute distress, lethargy, or poor perfusion are classified as U1 urgency." 
+        "Recommended tests include blood glucose, venous blood gas, and basic blood investigations."
+    ),
     "source": "Netherlands Triage Standard"
   },
   {
@@ -510,7 +546,10 @@ NTS_DOCUMENTS = [
     "standard": "NTS",
     "category": "Infection",
     "triageColor": "RED",
-    "content": "High fever with systemic instability is triaged as U1 urgency under NTS. Recommended tests include complete blood count, blood cultures, serum lactate, and chest X-ray.",
+    "content": (
+        "High fever with systemic instability is triaged as U1 urgency under NTS." 
+        "Recommended tests include complete blood count, blood cultures, serum lactate, and chest X-ray."
+    ),
     "source": "Netherlands Triage Standard"
   },
   {
@@ -518,7 +557,10 @@ NTS_DOCUMENTS = [
     "standard": "NTS",
     "category": "Trauma",
     "triageColor": "RED",
-    "content": "Uncontrolled external bleeding requires immediate U1 triage. Recommended tests include complete blood count and blood grouping and cross-match.",
+    "content": (
+        "Uncontrolled external bleeding requires immediate U1 triage." 
+        "Recommended tests include complete blood count and blood grouping and cross-match."
+    ),
     "source": "Netherlands Triage Standard"
   },
   {
@@ -526,7 +568,10 @@ NTS_DOCUMENTS = [
     "standard": "NTS",
     "category": "Toxicology",
     "triageColor": "RED",
-    "content": "Intoxication with altered mental status or instability is classified as U1 urgency. Recommended tests include blood glucose, arterial blood gas, serum electrolytes, and ECG.",
+    "content": (
+        "Intoxication with altered mental status or instability is classified as U1 urgency." 
+        "Recommended tests include blood glucose, arterial blood gas, serum electrolytes, and ECG."
+    ),
     "source": "Netherlands Triage Standard"
   },
   {
@@ -534,7 +579,10 @@ NTS_DOCUMENTS = [
     "standard": "NTS",
     "category": "Breathing",
     "triageColor": "YELLOW",
-    "content": "Moderate dyspnea with stable oxygenation should be triaged as U3 urgency. Recommended tests include pulse oximetry and chest X-ray.",
+    "content": (
+        "Moderate dyspnea with stable oxygenation should be triaged as U3 urgency." 
+        "Recommended tests include pulse oximetry and chest X-ray."
+    ),
     "source": "Netherlands Triage Standard"
   },
   {
@@ -542,7 +590,10 @@ NTS_DOCUMENTS = [
     "standard": "NTS",
     "category": "Cardiac",
     "triageColor": "YELLOW",
-    "content": "Chest pain without immediate cardiac suspicion is classified as U3 urgency. Recommended tests include ECG and cardiac biomarkers for risk stratification.",
+    "content": (
+        "Chest pain without immediate cardiac suspicion is classified as U3 urgency." 
+        "Recommended tests include ECG and cardiac biomarkers for risk stratification."
+    ),
     "source": "Netherlands Triage Standard"
   },
   {
@@ -550,7 +601,10 @@ NTS_DOCUMENTS = [
     "standard": "NTS",
     "category": "Abdominal",
     "triageColor": "YELLOW",
-    "content": "Abdominal pain without guarding or shock may be triaged as U3 urgency. Recommended tests include complete blood count, urine examination, and abdominal ultrasound.",
+    "content": (
+        "Abdominal pain without guarding or shock may be triaged as U3 urgency." 
+        "Recommended tests include complete blood count, urine examination, and abdominal ultrasound."
+    ),
     "source": "Netherlands Triage Standard"
   },
   {
@@ -558,7 +612,10 @@ NTS_DOCUMENTS = [
     "standard": "NTS",
     "category": "Infection",
     "triageColor": "YELLOW",
-    "content": "Fever requiring same-day medical assessment corresponds to U3 urgency. Recommended tests include complete blood count and urine routine examination.",
+    "content": (
+        "Fever requiring same-day medical assessment corresponds to U3 urgency." 
+        "Recommended tests include complete blood count and urine routine examination."
+    ),
     "source": "Netherlands Triage Standard"
   },
   {
@@ -566,7 +623,10 @@ NTS_DOCUMENTS = [
     "standard": "NTS",
     "category": "Trauma",
     "triageColor": "YELLOW",
-    "content": "Moderate trauma without physiological instability is classified as U3 urgency. Recommended tests include complete blood count and imaging as indicated.",
+    "content": (
+        "Moderate trauma without physiological instability is classified as U3 urgency."
+        "Recommended tests include complete blood count and imaging as indicated."
+    ),
     "source": "Netherlands Triage Standard"
   },
   {
@@ -574,7 +634,10 @@ NTS_DOCUMENTS = [
     "standard": "NTS",
     "category": "Neurology",
     "triageColor": "YELLOW",
-    "content": "Headache without red-flag neurological signs is typically U3 urgency. Recommended tests include blood pressure measurement and neurological examination.",
+    "content": (
+        "Headache without red-flag neurological signs is typically U3 urgency."
+        "Recommended tests include blood pressure measurement and neurological examination."
+    ),
     "source": "Netherlands Triage Standard"
   },
   {
@@ -582,7 +645,10 @@ NTS_DOCUMENTS = [
     "standard": "NTS",
     "category": "General",
     "triageColor": "YELLOW",
-    "content": "Persistent vomiting or dehydration risk qualifies for U3 urgency. Recommended tests include serum electrolytes, urea, creatinine, and hydration assessment.",
+    "content": (
+        "Persistent vomiting or dehydration risk qualifies for U3 urgency. "
+        "Recommended tests include serum electrolytes, urea, creatinine, and hydration assessment."
+    ),
     "source": "Netherlands Triage Standard"
   },
   {
@@ -590,7 +656,10 @@ NTS_DOCUMENTS = [
     "standard": "NTS",
     "category": "Infection",
     "triageColor": "YELLOW",
-    "content": "Acute infections requiring urgent review are triaged as U3. Recommended tests include complete blood count and infection-focused investigations.",
+    "content": (
+        "Acute infections requiring urgent review are triaged as U3. "
+        "Recommended tests include complete blood count and infection-focused investigations."
+    ),
     "source": "Netherlands Triage Standard"
   },
   {
@@ -598,7 +667,10 @@ NTS_DOCUMENTS = [
     "standard": "NTS",
     "category": "General",
     "triageColor": "YELLOW",
-    "content": "Significant functional impairment without instability is classified as U3 urgency. Recommended tests are guided by clinical presentation.",
+    "content": (
+        "Significant functional impairment without instability is classified as U3 urgency. "
+        "Recommended tests are guided by clinical presentation."
+    ),
     "source": "Netherlands Triage Standard"
   },
   {
@@ -606,7 +678,10 @@ NTS_DOCUMENTS = [
     "standard": "NTS",
     "category": "Geriatric",
     "triageColor": "YELLOW",
-    "content": "Elderly patients with new symptoms and stable vitals are commonly triaged U3. Recommended tests include complete blood count, serum electrolytes, and urine examination.",
+    "content": (
+        "Elderly patients with new symptoms and stable vitals are commonly triaged U3. "
+        "Recommended tests include complete blood count, serum electrolytes, and urine examination."
+    ),
     "source": "Netherlands Triage Standard"
   },
   {
@@ -614,7 +689,10 @@ NTS_DOCUMENTS = [
     "standard": "NTS",
     "category": "Respiratory",
     "triageColor": "GREEN",
-    "content": "Mild respiratory or ENT complaints without red flags may be triaged as U4 or U5. Recommended tests are usually not required.",
+    "content": (
+        "Mild respiratory or ENT complaints without red flags may be triaged as U4 or U5. "
+        "Recommended tests are usually not required."
+    ),
     "source": "Netherlands Triage Standard"
   },
   {
@@ -622,7 +700,10 @@ NTS_DOCUMENTS = [
     "standard": "NTS",
     "category": "Trauma",
     "triageColor": "GREEN",
-    "content": "Minor wounds or superficial injuries are generally classified as U5 under NTS. Recommended tests are not required.",
+    "content": (
+        "Minor wounds or superficial injuries are generally classified as U5 under NTS. "
+        "Recommended tests are not required."
+    ),
     "source": "Netherlands Triage Standard"
   },
   {
@@ -630,7 +711,10 @@ NTS_DOCUMENTS = [
     "standard": "NTS",
     "category": "Musculoskeletal",
     "triageColor": "GREEN",
-    "content": "Stable musculoskeletal pain without red flags may be triaged as U4 or U5. Recommended tests are not required at triage.",
+    "content": (
+        "Stable musculoskeletal pain without red flags may be triaged as U4 or U5. "
+        "Recommended tests are not required at triage."
+    ),
     "source": "Netherlands Triage Standard"
   },
   {
@@ -638,7 +722,10 @@ NTS_DOCUMENTS = [
     "standard": "NTS",
     "category": "General",
     "triageColor": "GREEN",
-    "content": "Chronic complaints without acute deterioration are triaged as U4 or U5. No investigations are required at triage.",
+    "content": (
+        "Chronic complaints without acute deterioration are triaged as U4 or U5. "
+        "No investigations are required at triage."
+    ),
     "source": "Netherlands Triage Standard"
   },
   {
@@ -646,7 +733,10 @@ NTS_DOCUMENTS = [
     "standard": "NTS",
     "category": "General",
     "triageColor": "GREEN",
-    "content": "Administrative, advice-only, or reassurance-only presentations are classified as U5. No investigations are required.",
+    "content": (
+        "Administrative, advice-only, or reassurance-only presentations are classified as U5. "
+        "No investigations are required."
+    ),
     "source": "Netherlands Triage Standard"
   },
   {
@@ -654,7 +744,10 @@ NTS_DOCUMENTS = [
     "standard": "NTS",
     "category": "Ophthalmology",
     "triageColor": "YELLOW",
-    "content": "Eye pain with redness or irritation without vision loss, trauma, or severe systemic symptoms is classified as U3 urgency under NTS. Recommended tests include visual acuity assessment.",
+    "content": (
+        "Eye pain with redness or irritation without vision loss, trauma, or severe systemic symptoms is classified as U3 urgency under NTS. "
+        "Recommended tests include visual acuity assessment."
+    ),
     "source": "Netherlands Triage Standard - Eye Complaints"
   },
   {
@@ -662,7 +755,10 @@ NTS_DOCUMENTS = [
     "standard": "NTS",
     "category": "Musculoskeletal",
     "triageColor": "YELLOW",
-    "content": "Limb pain without deformity, circulatory compromise, or neurological deficit is classified as U3 urgency under NTS. Recommended tests include local examination and X-ray if indicated.",
+    "content": (
+        "Limb pain without deformity, circulatory compromise, or neurological deficit is classified as U3 urgency under NTS. "
+        "Recommended tests include local examination and X-ray if indicated."
+    ),
     "source": "Netherlands Triage Standard - Musculoskeletal Complaints"
   },
   {
@@ -670,7 +766,10 @@ NTS_DOCUMENTS = [
     "standard": "NTS",
     "category": "Airway",
     "triageColor": "RED",
-    "content": "Neck or throat swelling with potential airway compromise, stridor, dysphagia, or hypoxia is classified as U1 urgency under NTS. Recommended tests include airway assessment and pulse oximetry.",
+    "content": (
+        "Neck or throat swelling with potential airway compromise, stridor, dysphagia, or hypoxia is classified as U1 urgency under NTS. "
+        "Recommended tests include airway assessment and pulse oximetry."
+    ),
     "source": "Netherlands Triage Standard - Airway Emergencies"
   },
   {
@@ -678,7 +777,10 @@ NTS_DOCUMENTS = [
     "standard": "NTS",
     "category": "Gastrointestinal",
     "triageColor": "YELLOW",
-    "content": "Abdominal pain with loose motions without dehydration, shock, blood in stools, or altered mental status is classified as U3 urgency under NTS. Recommended tests include stool examination, serum electrolytes, and complete blood count.",
+    "content": (
+        "Abdominal pain with loose motions without dehydration, shock, blood in stools, or altered mental status is classified as U3 urgency under NTS. "
+        "Recommended tests include stool examination, serum electrolytes, and complete blood count."
+    ),
     "source": "Netherlands Triage Standard - Gastrointestinal Complaints"
   }
 ]

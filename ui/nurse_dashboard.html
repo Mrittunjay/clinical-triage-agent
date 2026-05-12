@@ -70,6 +70,8 @@
 
   const data = JSON.parse(raw);
 
+  const assignedDoctor = data.assignedDoctor || {};
+
   // Parse triage_result string → object
   let triage = {};
   if (typeof data.triage_result === "string") {
@@ -110,6 +112,12 @@
           ? triage.suggestedTests.join("\\n")
           : "No tests suggested by triage"
       }</textarea>
+    </div>
+
+    <div class="section">
+        <strong>Assigned Doctor (Editable)</strong>
+        <input value="${assignedDoctor.name || ""}" />
+        <input value="${assignedDoctor.specialty}"
     </div>
 
     <div class="section">

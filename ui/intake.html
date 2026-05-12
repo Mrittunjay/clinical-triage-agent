@@ -156,6 +156,20 @@
 
   let sessionId = null;
   let currentProtocol = null;
+  
+  // Doctors registry (Demo Purpose)
+  const DOCTORS_BY_PROTOCOL = {
+    ATP: [
+      { name: "Dr. Ananya Rao", specialty: "Emergency Medicine" },
+      { name: "Dr. Vikram Iyer", specialty: "Internal Medicine" },
+      { name: "Dr. Neha Kapoor", specialty: "General Practice" }
+    ],
+    NTS: [
+      { name: "Dr. Jeroen van Dijk", specialty: "Emergency Geneeskunde" },
+      { name: "Dr. Sophie de Vries", specialty: "Interne Geneeskunde" },
+      { name: "Dr. Mark Jansen", specialty: "Huisarts" }
+    ]
+  };
 
   fetch("/admin/config")
     .then(r => r.json())
@@ -237,6 +251,15 @@
         data.triage_result ? data :
         (typeof data.message === "object" ? data.message : data);
 
+      // Assign doctor based on protocol (AFTER triage)
+      const doctors = DOCTORS_BY_PROTOCOL[currentProtocol] || [];
+      const assignedDoctor = doctors.length
+        ? doctors[Math.floor(Math.random() * doctors.length)]
+        : null;
+
+      // Attach to payload so both UIs can access it
+      finalPayload.assignedDoctor = assignedDoctor;
+
       localStorage.setItem("triage_case", JSON.stringify(finalPayload));
 
       // Parse triage_result (stringified JSON)
@@ -256,18 +279,40 @@
         triageColor === "GREEN" ? "#16a34a" :
         "#374151";
 
+      // if (
+      //   finalPayload.input_content_safety?.categoriesAnalysis
+      //     ?.some(c => c.severity > 0)
+      // ) {
+      //   addMessage(
+      //     "Content Safety Alert Human Review Required",
+      //     "assistant"
+      //   );
+      // }
+
+      // Content safety banner (rendered below "Triage Complete")
+      let safetyBanner = "";
       if (
         finalPayload.input_content_safety?.categoriesAnalysis
           ?.some(c => c.severity > 0)
       ) {
-        addMessage(
-          "⚠️ Content Safety Alert Human Review Required",
-          "assistant"
-        );
+        safetyBanner = `
+          <div style="
+            margin-top:10px;
+            padding:10px;
+            background:#fee2e2;
+            color:#991b1b;
+            border-radius:6px;
+            font-weight:600;
+          ">
+            Content Safety Alert - Human Review Required
+          </div>
+        `;
       }
 
       messages.innerHTML += `
         <div class="message assistant">
+          ${safetyBanner}
+          <br>
           <strong>Triage Color:</strong>
           <span style="color:${color};font-weight:700;">${triageColor}</span>
           <br><br>
@@ -275,6 +320,13 @@
           <ul>
             ${tests.map(t => `<li>${t}</li>`).join("")}
           </ul>
+          <strong>Assigned Doctor (Suggested)</strong><br>
+          <span>
+            ${finalPayload.assignedDoctor
+              ? `${finalPayload.assignedDoctor.name} - ${finalPayload.assignedDoctor.specialty}`
+              : "To be assigned"}
+          </span>
+          <br><br>
           <button class="primary" onclick="openNurseDashboard()">
             Open Nurse Dashboard
           </button>
