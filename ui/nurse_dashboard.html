@@ -1,0 +1,140 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Nurse Dashboard</title>
+
+  <style>
+    body {
+      font-family: Segoe UI, Arial, sans-serif;
+      background: #f8fafc;
+      padding: 24px;
+    }
+
+    h2 { margin-top: 0; }
+
+    .section {
+      background: white;
+      padding: 16px;
+      margin-bottom: 16px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,.05);
+    }
+
+    textarea, input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 6px;
+    }
+
+    .readonly {
+      background: #f1f5f9;
+    }
+
+    .warn {
+      background: #fee2e2;
+      color: #991b1b;
+      padding: 12px;
+      border-radius: 6px;
+      margin-bottom: 16px;
+    }
+
+    button {
+      padding: 10px 14px;
+      margin-right: 8px;
+      border-radius: 6px;
+      border: none;
+      background: #2563eb;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+<h2>Nurse Dashboard</h2>
+
+<div id="dashboard"></div>
+
+<script>
+  const root = document.getElementById("dashboard");
+  const raw = localStorage.getItem("triage_case");
+
+  if (!raw) {
+    root.innerHTML = `<div class="warn">No triage data found. Please complete intake first.</div>`;
+    throw new Error("No triage_case");
+  }
+
+  const data = JSON.parse(raw);
+
+  // Parse triage_result string → object
+  let triage = {};
+  if (typeof data.triage_result === "string") {
+    try {
+      triage = JSON.parse(data.triage_result);
+    } catch {}
+  }
+
+  const safetyAlert =
+    data.input_content_safety?.categoriesAnalysis?.some(c => c.severity > 0);
+
+  root.innerHTML = `
+    ${safetyAlert ? `<div class="warn">⚠️ Content Safety Alert – Review Required</div>` : ""}
+
+    <div class="section">
+      <strong>Patient ID</strong>
+      <input class="readonly" value="${data.patient_id}" readonly />
+    </div>
+
+    <div class="section">
+      <strong>Chief Complaint</strong>
+      <input value="${data.received_payload.chiefComplaint}" />
+      <strong>Symptoms</strong>
+      <textarea rows="2">${data.received_payload.symptoms.join(", ")}</textarea>
+    </div>
+
+    <div class="section">
+      <strong>Vitals</strong>
+      <input value="Heart Rate: ${data.received_payload.vitals.heartRate}" />
+      <input value="SpO₂: ${data.received_payload.vitals.spo2}" />
+    </div>
+
+    <div class="section">
+      <strong>Triage Decision</strong>
+      <input value="${triage.triageColor || "UNKNOWN"}" />
+      <textarea rows="3">${
+        triage.suggestedTests && triage.suggestedTests.length
+          ? triage.suggestedTests.join("\\n")
+          : "No tests suggested by triage"
+      }</textarea>
+    </div>
+
+    <div class="section">
+      <strong>AI Reasoning</strong>
+      <textarea class="readonly" rows="6" readonly>
+${data.ai_resoning || "Not available"}
+      </textarea>
+    </div>
+
+    <div class="section">
+      <strong>Nurse Remarks</strong>
+      <textarea rows="4"></textarea>
+    </div>
+
+    <div class="section">
+      <strong>Doctor Final Diagnosis</strong>
+      <textarea rows="4"></textarea>
+    </div>
+
+    <div class="section">
+      <button onclick="alert('Save to backend later')">Save</button>
+      <button onclick="window.print()">Download PDF</button>
+    </div>
+  `;
+</script>
+
+</body>
+</html>
