@@ -99,8 +99,9 @@ def intake_message(payload: Dict[str, str]):
 
     return {
         "status": "COMPLETE",
-        "intake": intake,
-        "triageResult": triage_result
+        **triage_result
+        # "intake": intake,
+        # "triageResult": triage_result
     }
 
 @app.get("/admin/config")

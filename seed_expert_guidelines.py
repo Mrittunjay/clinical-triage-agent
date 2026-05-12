@@ -24,13 +24,18 @@ client = SearchClient(
 # These are export facts, each document here encodes one decision rule,
 
 # AIIMS TRIAGE PROTOCOL
+
 ATP_DOCUMENTS = [
   {
     "id": "atp_airway_red_01",
     "standard": "ATP",
     "category": "Airway",
     "triageColor": "RED",
-    "content": "Airway obstruction or imminent airway compromise requires immediate RED triage due to risk of hypoxia and respiratory failure.",
+    "content": (
+      "Airway obstruction or imminent airway compromise requires immediate RED triage due to risk of hypoxia and respiratory failure. "
+      "Recommended tests and immediate assessments include airway patency assessment, pulse oximetry, arterial blood gas if available, "
+      "and preparation for definitive airway management."
+    ),
     "source": "AIIMS Triage Protocol (summarized)"
   },
   {
@@ -38,7 +43,10 @@ ATP_DOCUMENTS = [
     "standard": "ATP",
     "category": "Breathing",
     "triageColor": "RED",
-    "content": "Severe respiratory distress with inability to speak full sentences indicates critical illness and requires RED triage.",
+    "content": (
+      "Severe respiratory distress with inability to speak full sentences indicates critical illness and requires RED triage. "
+      "Recommended tests include pulse oximetry, arterial blood gas, chest X-ray, and ECG if a cardiopulmonary cause is suspected."
+    ),
     "source": "AIIMS Emergency Care Principles"
   },
   {
@@ -46,7 +54,10 @@ ATP_DOCUMENTS = [
     "standard": "ATP",
     "category": "Vitals",
     "triageColor": "RED",
-    "content": "Oxygen saturation below 94 percent in adults is considered hypoxia and mandates immediate RED triage.",
+    "content": (
+      "Oxygen saturation below 94 percent in adults is considered hypoxia and mandates immediate RED triage. "
+      "Recommended tests include repeat pulse oximetry, arterial blood gas analysis, and chest imaging as clinically indicated."
+    ),
     "source": "AIIMS Respiratory Care Guidance"
   },
   {
@@ -54,7 +65,10 @@ ATP_DOCUMENTS = [
     "standard": "ATP",
     "category": "Cardiac",
     "triageColor": "RED",
-    "content": "Chest pain suspected to be cardiac in origin, especially with breathlessness or diaphoresis, requires RED triage.",
+    "content": (
+      "Chest pain suspected to be cardiac in origin, especially with breathlessness or diaphoresis, requires RED triage. "
+      "Recommended tests include ECG, cardiac biomarkers such as troponin, chest X-ray, and continuous cardiac monitoring."
+    ),
     "source": "AIIMS Cardiac Emergency Protocol"
   },
   {
@@ -62,7 +76,10 @@ ATP_DOCUMENTS = [
     "standard": "ATP",
     "category": "Breathing",
     "triageColor": "RED",
-    "content": "Sudden onset breathlessness with hypoxia or respiratory fatigue is a life-threatening emergency requiring RED triage.",
+    "content": (
+      "Sudden onset breathlessness with hypoxia or respiratory fatigue is a life-threatening emergency requiring RED triage. "
+      "Recommended tests include pulse oximetry, arterial blood gas, chest X-ray, and ECG."
+    ),
     "source": "AIIMS Emergency Medicine SOP"
   },
   {
@@ -70,7 +87,10 @@ ATP_DOCUMENTS = [
     "standard": "ATP",
     "category": "Neurology",
     "triageColor": "RED",
-    "content": "Altered level of consciousness or unresponsiveness indicates severe neurological or metabolic pathology and requires RED triage.",
+    "content": (
+      "Altered level of consciousness or unresponsiveness indicates severe neurological or metabolic pathology and requires RED triage. "
+      "Recommended tests include capillary blood glucose, serum electrolytes, arterial blood gas, and neuroimaging as indicated."
+    ),
     "source": "AIIMS Neurological Emergencies"
   },
   {
@@ -78,7 +98,11 @@ ATP_DOCUMENTS = [
     "standard": "ATP",
     "category": "Neurology",
     "triageColor": "RED",
-    "content": "Active seizures or status epilepticus require immediate RED triage to prevent neurological injury.",
+    "content": (
+      "Active seizures or status epilepticus require immediate RED triage to prevent neurological injury. "
+      "Recommended tests include blood glucose estimation, serum electrolytes, anticonvulsant drug levels when applicable, "
+      "and EEG or neuroimaging as clinically indicated."
+    ),
     "source": "AIIMS Neurology Protocol"
   },
   {
@@ -86,7 +110,10 @@ ATP_DOCUMENTS = [
     "standard": "ATP",
     "category": "Neurology",
     "triageColor": "RED",
-    "content": "New focal neurological deficits or suspected acute stroke warrant immediate RED triage for time-sensitive intervention.",
+    "content": (
+      "New focal neurological deficits or suspected acute stroke warrant immediate RED triage for time-sensitive intervention. "
+      "Recommended tests include immediate blood glucose check, non-contrast CT brain, ECG, and basic blood investigations."
+    ),
     "source": "AIIMS Stroke Pathway"
   },
   {
@@ -94,7 +121,10 @@ ATP_DOCUMENTS = [
     "standard": "ATP",
     "category": "Circulation",
     "triageColor": "RED",
-    "content": "Signs of shock including hypotension, tachycardia, or cold extremities require immediate RED triage.",
+    "content": (
+      "Signs of shock including hypotension, tachycardia, or cold extremities require immediate RED triage. "
+      "Recommended tests include blood pressure monitoring, complete blood count, serum lactate, arterial blood gas, and ECG."
+    ),
     "source": "AIIMS Shock Management"
   },
   {
@@ -102,7 +132,10 @@ ATP_DOCUMENTS = [
     "standard": "ATP",
     "category": "Infection",
     "triageColor": "RED",
-    "content": "Fever with hypotension or altered sensorium suggests sepsis and requires RED triage.",
+    "content": (
+      "Fever with hypotension or altered sensorium suggests sepsis and requires RED triage. "
+      "Recommended tests include complete blood count, blood cultures, serum lactate, renal function tests, and chest X-ray."
+    ),
     "source": "AIIMS Sepsis Protocol"
   },
   {
@@ -110,7 +143,10 @@ ATP_DOCUMENTS = [
     "standard": "ATP",
     "category": "Trauma",
     "triageColor": "RED",
-    "content": "Severe trauma with active or uncontrolled bleeding requires immediate RED triage.",
+    "content": (
+      "Severe trauma with active or uncontrolled bleeding requires immediate RED triage. "
+      "Recommended tests include complete blood count, blood grouping and cross-match, FAST ultrasound, and CT imaging as indicated."
+    ),
     "source": "AIIMS Trauma Care"
   },
   {
@@ -118,7 +154,10 @@ ATP_DOCUMENTS = [
     "standard": "ATP",
     "category": "Trauma",
     "triageColor": "RED",
-    "content": "Head injury associated with loss of consciousness or vomiting requires RED triage.",
+    "content": (
+      "Head injury associated with loss of consciousness or vomiting requires RED triage. "
+      "Recommended tests include Glasgow Coma Scale assessment, CT scan of the brain, and cervical spine evaluation."
+    ),
     "source": "AIIMS Head Injury Protocol"
   },
   {
@@ -126,7 +165,11 @@ ATP_DOCUMENTS = [
     "standard": "ATP",
     "category": "Abdominal",
     "triageColor": "RED",
-    "content": "Severe abdominal pain with guarding or rigidity suggests acute abdomen and requires RED triage.",
+    "content": (
+      "Severe abdominal pain with guarding or rigidity suggests acute abdomen and requires RED triage. "
+      "Recommended tests include complete blood count, serum electrolytes, liver function tests, serum amylase or lipase, "
+      "and abdominal ultrasound or CT scan as indicated."
+    ),
     "source": "AIIMS Surgical Emergencies"
   },
   {
@@ -134,7 +177,10 @@ ATP_DOCUMENTS = [
     "standard": "ATP",
     "category": "Allergy",
     "triageColor": "RED",
-    "content": "Anaphylaxis or severe allergic reaction with airway or circulatory compromise requires RED triage.",
+    "content": (
+      "Anaphylaxis or severe allergic reaction with airway or circulatory compromise requires RED triage. "
+      "Recommended assessments include airway and hemodynamic monitoring; laboratory tests are secondary to immediate treatment."
+    ),
     "source": "AIIMS Allergy Protocol"
   },
   {
@@ -142,7 +188,10 @@ ATP_DOCUMENTS = [
     "standard": "ATP",
     "category": "Toxicology",
     "triageColor": "RED",
-    "content": "Poisoning or overdose with systemic symptoms or altered mental status requires RED triage.",
+    "content": (
+      "Poisoning or overdose with systemic symptoms or altered mental status requires RED triage. "
+      "Recommended tests include blood glucose, arterial blood gas, serum electrolytes, toxicology screening, and ECG."
+    ),
     "source": "AIIMS Toxicology"
   },
   {
@@ -150,7 +199,10 @@ ATP_DOCUMENTS = [
     "standard": "ATP",
     "category": "Breathing",
     "triageColor": "YELLOW",
-    "content": "Moderate breathlessness with stable oxygen saturation requires YELLOW triage for urgent assessment.",
+    "content": (
+      "Moderate breathlessness with stable oxygen saturation requires YELLOW triage for urgent assessment. "
+      "Recommended tests include pulse oximetry, chest X-ray, and ECG if clinically indicated."
+    ),
     "source": "AIIMS Triage Flow"
   },
   {
@@ -158,7 +210,10 @@ ATP_DOCUMENTS = [
     "standard": "ATP",
     "category": "Cardiac",
     "triageColor": "YELLOW",
-    "content": "Chest pain without red-flag features and stable vitals should be triaged YELLOW.",
+    "content": (
+      "Chest pain without red-flag features and stable vitals should be triaged YELLOW. "
+      "Recommended tests include ECG and cardiac biomarkers for risk stratification."
+    ),
     "source": "AIIMS Cardiac Triage"
   },
   {
@@ -166,7 +221,10 @@ ATP_DOCUMENTS = [
     "standard": "ATP",
     "category": "Abdominal",
     "triageColor": "YELLOW",
-    "content": "Abdominal pain without peritoneal signs or instability should be triaged YELLOW.",
+    "content": (
+      "Abdominal pain without peritoneal signs or instability should be triaged YELLOW. "
+      "Recommended tests include complete blood count, urine routine examination, and abdominal ultrasound if symptoms persist."
+    ),
     "source": "AIIMS Surgical Triage"
   },
   {
@@ -174,7 +232,10 @@ ATP_DOCUMENTS = [
     "standard": "ATP",
     "category": "Infection",
     "triageColor": "YELLOW",
-    "content": "Fever without shock or altered mental status requires YELLOW triage for same-day evaluation.",
+    "content": (
+      "Fever without shock or altered mental status requires YELLOW triage for same-day evaluation. "
+      "Recommended tests include complete blood count, urine routine examination, and chest X-ray as indicated."
+    ),
     "source": "AIIMS Infection Triage"
   },
   {
@@ -182,7 +243,10 @@ ATP_DOCUMENTS = [
     "standard": "ATP",
     "category": "Trauma",
     "triageColor": "YELLOW",
-    "content": "Moderate trauma without hemodynamic compromise should be triaged YELLOW.",
+    "content": (
+      "Moderate trauma without hemodynamic compromise should be triaged YELLOW. "
+      "Recommended tests include complete blood count and appropriate imaging based on injury pattern."
+    ),
     "source": "AIIMS Trauma Triage"
   },
   {
@@ -190,7 +254,11 @@ ATP_DOCUMENTS = [
     "standard": "ATP",
     "category": "Neurology",
     "triageColor": "YELLOW",
-    "content": "Headache without neurological deficit or red flags should be triaged YELLOW.",
+    "content": (
+      "Headache without neurological deficit or red flags should be triaged YELLOW. "
+      "Recommended tests include blood pressure measurement and basic neurological assessment; "
+      "neuroimaging if red flags develop."
+    ),
     "source": "AIIMS Neurology Guidance"
   },
   {
@@ -198,7 +266,10 @@ ATP_DOCUMENTS = [
     "standard": "ATP",
     "category": "General",
     "triageColor": "YELLOW",
-    "content": "Persistent vomiting or diarrhea with dehydration risk requires YELLOW triage.",
+    "content": (
+      "Persistent vomiting or diarrhea with dehydration risk requires YELLOW triage. "
+      "Recommended tests include serum electrolytes, blood urea, creatinine, and urine output assessment."
+    ),
     "source": "AIIMS Medical Triage"
   },
   {
@@ -206,7 +277,10 @@ ATP_DOCUMENTS = [
     "standard": "ATP",
     "category": "Neurology",
     "triageColor": "YELLOW",
-    "content": "Post-ictal state with stable vitals requires YELLOW triage and observation.",
+    "content": (
+      "Post-ictal state with stable vitals requires YELLOW triage and observation. "
+      "Recommended tests include blood glucose and serum electrolytes."
+    ),
     "source": "AIIMS Epilepsy Care"
   },
   {
@@ -214,7 +288,10 @@ ATP_DOCUMENTS = [
     "standard": "ATP",
     "category": "Pain",
     "triageColor": "YELLOW",
-    "content": "Severe pain with stable vital signs requires YELLOW triage for urgent management.",
+    "content": (
+      "Severe pain with stable vital signs requires YELLOW triage for urgent management. "
+      "Recommended tests are guided by the pain site and may include basic blood investigations and imaging."
+    ),
     "source": "AIIMS Pain Management"
   },
   {
@@ -222,7 +299,10 @@ ATP_DOCUMENTS = [
     "standard": "ATP",
     "category": "Geriatric",
     "triageColor": "YELLOW",
-    "content": "Elderly patients with acute functional decline but stable vitals should be triaged YELLOW.",
+    "content": (
+      "Elderly patients with acute functional decline but stable vitals should be triaged YELLOW. "
+      "Recommended tests include complete blood count, serum electrolytes, renal function tests, and urine examination."
+    ),
     "source": "AIIMS Geriatric Care"
   },
   {
@@ -230,7 +310,10 @@ ATP_DOCUMENTS = [
     "standard": "ATP",
     "category": "Respiratory",
     "triageColor": "GREEN",
-    "content": "Mild upper respiratory symptoms with normal vital signs may be triaged GREEN.",
+    "content": (
+      "Mild upper respiratory symptoms with normal vital signs may be triaged GREEN. "
+      "Recommended tests are usually not required unless symptoms persist or worsen."
+    ),
     "source": "AIIMS Outpatient Guidance"
   },
   {
@@ -238,7 +321,10 @@ ATP_DOCUMENTS = [
     "standard": "ATP",
     "category": "Trauma",
     "triageColor": "GREEN",
-    "content": "Minor injuries without functional limitation may be triaged GREEN.",
+    "content": (
+      "Minor injuries without functional limitation may be triaged GREEN. "
+      "Recommended tests are generally not necessary; local examination is sufficient."
+    ),
     "source": "AIIMS Minor Injury Care"
   },
   {
@@ -246,7 +332,10 @@ ATP_DOCUMENTS = [
     "standard": "ATP",
     "category": "General",
     "triageColor": "GREEN",
-    "content": "Stable chronic complaints without acute worsening may be triaged GREEN.",
+    "content": (
+      "Stable chronic complaints without acute worsening may be triaged GREEN. "
+      "Recommended tests are not required during triage."
+    ),
     "source": "AIIMS OPD Triage"
   },
   {
@@ -254,7 +343,10 @@ ATP_DOCUMENTS = [
     "standard": "ATP",
     "category": "General",
     "triageColor": "GREEN",
-    "content": "Follow-up visits without new symptoms may be triaged GREEN.",
+    "content": (
+      "Follow-up visits without new symptoms may be triaged GREEN. "
+      "Recommended tests are as per existing treatment plan."
+    ),
     "source": "AIIMS OPD Triage"
   },
   {
@@ -262,7 +354,10 @@ ATP_DOCUMENTS = [
     "standard": "ATP",
     "category": "General",
     "triageColor": "GREEN",
-    "content": "Mild symptoms requiring reassurance only may be triaged GREEN.",
+    "content": (
+      "Mild symptoms requiring reassurance only may be triaged GREEN. "
+      "No investigations are required at triage."
+    ),
     "source": "AIIMS Triage Flow"
   },
   {
@@ -270,7 +365,10 @@ ATP_DOCUMENTS = [
     "standard": "ATP",
     "category": "Opthalmology",
     "triageColor": "YELLOW",
-    "content": "Eye pain with redness, irritation, or foreign body sensation without vision loss, truma or neurological deficts should be triage YELLOW for urgent opthalmologic evaluation",
+    "content": (
+      "Eye pain with redness, irritation, or foreign body sensation without vision loss, trauma, or neurological deficits "
+      "should be triaged YELLOW. Recommended tests include visual acuity assessment and slit-lamp examination."
+    ),
     "source": "AIIMS Opthalmology Emergency Guidelines"
   },
   {
@@ -278,18 +376,36 @@ ATP_DOCUMENTS = [
     "standard": "ATP",
     "category": "Musculoskeletal",
     "triageColor": "YELLOW",
-    "content": "Limb pain without deformity, neurovascular compromise, severe trauma, or systemic instability should be triaged YELLOW for assessment and pain management.",
-    "source": "AIIMS Opthalmology Emergency Guidelines"
+    "content": (
+      "Limb pain without deformity, neurovascular compromise, severe trauma, or systemic instability should be triaged YELLOW. "
+      "Recommended tests include local examination and X-ray if fracture is suspected."
+    ),
+    "source": "AIIMS Orthopaedic Emergency Guidelines"
   },
   {
     "id": "atp_neck_swelling_airway_red_33",
     "standard": "ATP",
     "category": "Airway",
     "triageColor": "RED",
-    "content": "Neck or throat swelling with potential airway compromise, difficulty swallowing, or hypoxia requires immediate RED triage due to risk of airway obstruction.",
+    "content": (
+      "Neck or throat swelling with potential airway compromise, difficulty swallowing, or hypoxia requires immediate RED triage. "
+      "Recommended tests include airway assessment, pulse oximetry, and imaging of the neck if clinically feasible."
+    ),
     "source": "AIIMS Airway Emergency Guidelines"
+  },
+  {
+    "id": "atp_gastro_loose_motion_yellow_34",
+    "standard": "ATP",
+    "category": "Gastrointestinal",
+    "triageColor": "YELLOW",
+    "content": (
+      "Stomach or abdominal pain associated with loose motions, without severe dehydration, shock, blood in stools, or altered mental status, "
+      "should be triaged YELLOW. Recommended tests include stool examination, serum electrolytes, complete blood count, and hydration assessment."
+    ),
+    "source": "AIIMS Gastrointestinal Triage Guidance"
   }
 ]
+
 
 # NETHERLANDS TRIAGE STANDARD
 NTS_DOCUMENTS = [
@@ -298,7 +414,7 @@ NTS_DOCUMENTS = [
     "standard": "NTS",
     "category": "Airway",
     "triageColor": "RED",
-    "content": "Airway compromise or obstruction is classified as U1 urgency under the Netherlands Triage Standard.",
+    "content": "Airway compromise or obstruction is classified as U1 urgency under the Netherlands Triage Standard. Recommended tests include airway assessment, pulse oximetry, and arterial blood gas if available.",
     "source": "Netherlands Triage Standard (summarized)"
   },
   {
@@ -306,7 +422,7 @@ NTS_DOCUMENTS = [
     "standard": "NTS",
     "category": "Breathing",
     "triageColor": "RED",
-    "content": "Severe dyspnea with signs of fatigue or cyanosis corresponds to U1 urgency under NTS.",
+    "content": "Severe dyspnea with signs of fatigue or cyanosis corresponds to U1 urgency under NTS. Recommended tests include pulse oximetry, arterial blood gas, chest X-ray, and ECG.",
     "source": "Netherlands Triage Standard"
   },
   {
@@ -314,7 +430,7 @@ NTS_DOCUMENTS = [
     "standard": "NTS",
     "category": "Breathing",
     "triageColor": "RED",
-    "content": "Cyanosis or critically low oxygenation is triaged as U1 urgency under NTS.",
+    "content": "Cyanosis or critically low oxygenation is triaged as U1 urgency under NTS. Recommended tests include pulse oximetry, arterial blood gas, and chest imaging.",
     "source": "Netherlands Triage Standard"
   },
   {
@@ -322,7 +438,7 @@ NTS_DOCUMENTS = [
     "standard": "NTS",
     "category": "Cardiac",
     "triageColor": "RED",
-    "content": "Thoracic pain suspected of cardiac origin with acute symptoms is classified as U1 urgency.",
+    "content": "Thoracic pain suspected of cardiac origin with acute symptoms is classified as U1 urgency. Recommended tests include ECG, cardiac biomarkers, and chest X-ray.",
     "source": "Netherlands Triage Standard"
   },
   {
@@ -330,7 +446,7 @@ NTS_DOCUMENTS = [
     "standard": "NTS",
     "category": "Neurology",
     "triageColor": "RED",
-    "content": "Sudden neurological deficits or reduced consciousness require U1 urgency under NTS.",
+    "content": "Sudden neurological deficits or reduced consciousness require U1 urgency under NTS. Recommended tests include blood glucose, CT brain, and basic blood investigations.",
     "source": "Netherlands Triage Standard"
   },
   {
@@ -338,7 +454,7 @@ NTS_DOCUMENTS = [
     "standard": "NTS",
     "category": "Neurology",
     "triageColor": "RED",
-    "content": "Active seizures or prolonged post-ictal unresponsiveness are classified as U1 urgency.",
+    "content": "Active seizures or prolonged post-ictal unresponsiveness are classified as U1 urgency. Recommended tests include blood glucose, serum electrolytes, and EEG or neuroimaging as indicated.",
     "source": "Netherlands Triage Standard"
   },
   {
@@ -346,7 +462,7 @@ NTS_DOCUMENTS = [
     "standard": "NTS",
     "category": "Circulation",
     "triageColor": "RED",
-    "content": "Hemodynamic instability or shock requires immediate U1 triage under NTS.",
+    "content": "Hemodynamic instability or shock requires immediate U1 triage under NTS. Recommended tests include blood pressure monitoring, complete blood count, serum lactate, arterial blood gas, and ECG.",
     "source": "Netherlands Triage Standard"
   },
   {
@@ -354,7 +470,7 @@ NTS_DOCUMENTS = [
     "standard": "NTS",
     "category": "Trauma",
     "triageColor": "RED",
-    "content": "High-risk trauma presentations per NTS criteria are triaged as U1 urgency.",
+    "content": "High-risk trauma presentations per NTS criteria are triaged as U1 urgency. Recommended tests include complete blood count, FAST ultrasound, and CT imaging as indicated.",
     "source": "Netherlands Triage Standard"
   },
   {
@@ -362,7 +478,7 @@ NTS_DOCUMENTS = [
     "standard": "NTS",
     "category": "Neurology",
     "triageColor": "RED",
-    "content": "Suspected acute stroke is classified as U1 urgency to enable time-critical treatment.",
+    "content": "Suspected acute stroke is classified as U1 urgency to enable time-critical treatment. Recommended tests include blood glucose measurement and non-contrast CT brain.",
     "source": "Netherlands Triage Standard"
   },
   {
@@ -370,7 +486,7 @@ NTS_DOCUMENTS = [
     "standard": "NTS",
     "category": "Abdominal",
     "triageColor": "RED",
-    "content": "Severe abdominal pain with suspected acute abdomen is triaged as U1 urgency.",
+    "content": "Severe abdominal pain with suspected acute abdomen is triaged as U1 urgency. Recommended tests include complete blood count, serum electrolytes, and abdominal imaging.",
     "source": "Netherlands Triage Standard"
   },
   {
@@ -378,7 +494,7 @@ NTS_DOCUMENTS = [
     "standard": "NTS",
     "category": "Allergy",
     "triageColor": "RED",
-    "content": "Anaphylaxis or severe allergic response requires U1 urgency under NTS.",
+    "content": "Anaphylaxis or severe allergic response requires U1 urgency under NTS. Recommended assessments include airway and hemodynamic monitoring; laboratory tests are secondary.",
     "source": "Netherlands Triage Standard"
   },
   {
@@ -386,7 +502,7 @@ NTS_DOCUMENTS = [
     "standard": "NTS",
     "category": "Pediatrics",
     "triageColor": "RED",
-    "content": "Pediatric acute distress, lethargy, or poor perfusion are classified as U1 urgency.",
+    "content": "Pediatric acute distress, lethargy, or poor perfusion are classified as U1 urgency. Recommended tests include blood glucose, venous blood gas, and basic blood investigations.",
     "source": "Netherlands Triage Standard"
   },
   {
@@ -394,7 +510,7 @@ NTS_DOCUMENTS = [
     "standard": "NTS",
     "category": "Infection",
     "triageColor": "RED",
-    "content": "High fever with systemic instability is triaged as U1 urgency under NTS.",
+    "content": "High fever with systemic instability is triaged as U1 urgency under NTS. Recommended tests include complete blood count, blood cultures, serum lactate, and chest X-ray.",
     "source": "Netherlands Triage Standard"
   },
   {
@@ -402,7 +518,7 @@ NTS_DOCUMENTS = [
     "standard": "NTS",
     "category": "Trauma",
     "triageColor": "RED",
-    "content": "Uncontrolled external bleeding requires immediate U1 triage.",
+    "content": "Uncontrolled external bleeding requires immediate U1 triage. Recommended tests include complete blood count and blood grouping and cross-match.",
     "source": "Netherlands Triage Standard"
   },
   {
@@ -410,7 +526,7 @@ NTS_DOCUMENTS = [
     "standard": "NTS",
     "category": "Toxicology",
     "triageColor": "RED",
-    "content": "Intoxication with altered mental status or instability is classified as U1 urgency.",
+    "content": "Intoxication with altered mental status or instability is classified as U1 urgency. Recommended tests include blood glucose, arterial blood gas, serum electrolytes, and ECG.",
     "source": "Netherlands Triage Standard"
   },
   {
@@ -418,7 +534,7 @@ NTS_DOCUMENTS = [
     "standard": "NTS",
     "category": "Breathing",
     "triageColor": "YELLOW",
-    "content": "Moderate dyspnea with stable oxygenation should be triaged as U3 urgency.",
+    "content": "Moderate dyspnea with stable oxygenation should be triaged as U3 urgency. Recommended tests include pulse oximetry and chest X-ray.",
     "source": "Netherlands Triage Standard"
   },
   {
@@ -426,7 +542,7 @@ NTS_DOCUMENTS = [
     "standard": "NTS",
     "category": "Cardiac",
     "triageColor": "YELLOW",
-    "content": "Chest pain without immediate cardiac suspicion is classified as U3 urgency.",
+    "content": "Chest pain without immediate cardiac suspicion is classified as U3 urgency. Recommended tests include ECG and cardiac biomarkers for risk stratification.",
     "source": "Netherlands Triage Standard"
   },
   {
@@ -434,7 +550,7 @@ NTS_DOCUMENTS = [
     "standard": "NTS",
     "category": "Abdominal",
     "triageColor": "YELLOW",
-    "content": "Abdominal pain without guarding or shock may be triaged as U3 urgency.",
+    "content": "Abdominal pain without guarding or shock may be triaged as U3 urgency. Recommended tests include complete blood count, urine examination, and abdominal ultrasound.",
     "source": "Netherlands Triage Standard"
   },
   {
@@ -442,7 +558,7 @@ NTS_DOCUMENTS = [
     "standard": "NTS",
     "category": "Infection",
     "triageColor": "YELLOW",
-    "content": "Fever requiring same-day medical assessment corresponds to U3 urgency.",
+    "content": "Fever requiring same-day medical assessment corresponds to U3 urgency. Recommended tests include complete blood count and urine routine examination.",
     "source": "Netherlands Triage Standard"
   },
   {
@@ -450,7 +566,7 @@ NTS_DOCUMENTS = [
     "standard": "NTS",
     "category": "Trauma",
     "triageColor": "YELLOW",
-    "content": "Moderate trauma without physiological instability is classified as U3 urgency.",
+    "content": "Moderate trauma without physiological instability is classified as U3 urgency. Recommended tests include complete blood count and imaging as indicated.",
     "source": "Netherlands Triage Standard"
   },
   {
@@ -458,7 +574,7 @@ NTS_DOCUMENTS = [
     "standard": "NTS",
     "category": "Neurology",
     "triageColor": "YELLOW",
-    "content": "Headache without red-flag neurological signs is typically U3 urgency.",
+    "content": "Headache without red-flag neurological signs is typically U3 urgency. Recommended tests include blood pressure measurement and neurological examination.",
     "source": "Netherlands Triage Standard"
   },
   {
@@ -466,7 +582,7 @@ NTS_DOCUMENTS = [
     "standard": "NTS",
     "category": "General",
     "triageColor": "YELLOW",
-    "content": "Persistent vomiting or dehydration risk qualifies for U3 urgency.",
+    "content": "Persistent vomiting or dehydration risk qualifies for U3 urgency. Recommended tests include serum electrolytes, urea, creatinine, and hydration assessment.",
     "source": "Netherlands Triage Standard"
   },
   {
@@ -474,7 +590,7 @@ NTS_DOCUMENTS = [
     "standard": "NTS",
     "category": "Infection",
     "triageColor": "YELLOW",
-    "content": "Acute infections requiring urgent review are triaged as U3.",
+    "content": "Acute infections requiring urgent review are triaged as U3. Recommended tests include complete blood count and infection-focused investigations.",
     "source": "Netherlands Triage Standard"
   },
   {
@@ -482,7 +598,7 @@ NTS_DOCUMENTS = [
     "standard": "NTS",
     "category": "General",
     "triageColor": "YELLOW",
-    "content": "Significant functional impairment without instability is classified as U3 urgency.",
+    "content": "Significant functional impairment without instability is classified as U3 urgency. Recommended tests are guided by clinical presentation.",
     "source": "Netherlands Triage Standard"
   },
   {
@@ -490,7 +606,7 @@ NTS_DOCUMENTS = [
     "standard": "NTS",
     "category": "Geriatric",
     "triageColor": "YELLOW",
-    "content": "Elderly patients with new symptoms and stable vitals are commonly triaged U3.",
+    "content": "Elderly patients with new symptoms and stable vitals are commonly triaged U3. Recommended tests include complete blood count, serum electrolytes, and urine examination.",
     "source": "Netherlands Triage Standard"
   },
   {
@@ -498,7 +614,7 @@ NTS_DOCUMENTS = [
     "standard": "NTS",
     "category": "Respiratory",
     "triageColor": "GREEN",
-    "content": "Mild respiratory or ENT complaints without red flags may be triaged as U4 or U5.",
+    "content": "Mild respiratory or ENT complaints without red flags may be triaged as U4 or U5. Recommended tests are usually not required.",
     "source": "Netherlands Triage Standard"
   },
   {
@@ -506,7 +622,7 @@ NTS_DOCUMENTS = [
     "standard": "NTS",
     "category": "Trauma",
     "triageColor": "GREEN",
-    "content": "Minor wounds or superficial injuries are generally classified as U5 under NTS.",
+    "content": "Minor wounds or superficial injuries are generally classified as U5 under NTS. Recommended tests are not required.",
     "source": "Netherlands Triage Standard"
   },
   {
@@ -514,7 +630,7 @@ NTS_DOCUMENTS = [
     "standard": "NTS",
     "category": "Musculoskeletal",
     "triageColor": "GREEN",
-    "content": "Stable musculoskeletal pain without red flags may be triaged as U4 or U5.",
+    "content": "Stable musculoskeletal pain without red flags may be triaged as U4 or U5. Recommended tests are not required at triage.",
     "source": "Netherlands Triage Standard"
   },
   {
@@ -522,7 +638,7 @@ NTS_DOCUMENTS = [
     "standard": "NTS",
     "category": "General",
     "triageColor": "GREEN",
-    "content": "Chronic complaints without acute deterioration are triaged as U4 or U5.",
+    "content": "Chronic complaints without acute deterioration are triaged as U4 or U5. No investigations are required at triage.",
     "source": "Netherlands Triage Standard"
   },
   {
@@ -530,15 +646,15 @@ NTS_DOCUMENTS = [
     "standard": "NTS",
     "category": "General",
     "triageColor": "GREEN",
-    "content": "Administrative, advice-only, or reassurance-only presentations are classified as U5.",
+    "content": "Administrative, advice-only, or reassurance-only presentations are classified as U5. No investigations are required.",
     "source": "Netherlands Triage Standard"
-  }, 
+  },
   {
     "id": "nts_eye_pain_u3_31",
     "standard": "NTS",
     "category": "Ophthalmology",
     "triageColor": "YELLOW",
-    "content": "Eye pain with redness or irritation without vision loss, trauma, or severe systemic symptoms is classified as U3 urgency under the Netherlands Triage Standard.",
+    "content": "Eye pain with redness or irritation without vision loss, trauma, or severe systemic symptoms is classified as U3 urgency under NTS. Recommended tests include visual acuity assessment.",
     "source": "Netherlands Triage Standard - Eye Complaints"
   },
   {
@@ -546,18 +662,27 @@ NTS_DOCUMENTS = [
     "standard": "NTS",
     "category": "Musculoskeletal",
     "triageColor": "YELLOW",
-    "content": "Limb pain without deformity, circulatory compromise, or neurological deficit is classified as U3 urgency under the Netherlands Triage Standard.",
+    "content": "Limb pain without deformity, circulatory compromise, or neurological deficit is classified as U3 urgency under NTS. Recommended tests include local examination and X-ray if indicated.",
     "source": "Netherlands Triage Standard - Musculoskeletal Complaints"
   },
   {
-    "id": "nts_neck_swelling_u1_34",
+    "id": "nts_neck_swelling_u1_33",
     "standard": "NTS",
     "category": "Airway",
     "triageColor": "RED",
-    "content": "Neck or throat swelling with potential airway compromise, stridor, dysphagia, or hypoxia is classified as U1 urgency under the Netherlands Triage Standard.",
+    "content": "Neck or throat swelling with potential airway compromise, stridor, dysphagia, or hypoxia is classified as U1 urgency under NTS. Recommended tests include airway assessment and pulse oximetry.",
     "source": "Netherlands Triage Standard - Airway Emergencies"
+  },
+  {
+    "id": "nts_gastro_loose_motion_u3_34",
+    "standard": "NTS",
+    "category": "Gastrointestinal",
+    "triageColor": "YELLOW",
+    "content": "Abdominal pain with loose motions without dehydration, shock, blood in stools, or altered mental status is classified as U3 urgency under NTS. Recommended tests include stool examination, serum electrolytes, and complete blood count.",
+    "source": "Netherlands Triage Standard - Gastrointestinal Complaints"
   }
 ]
+
 
 # Combining the ATP and NTS triage protocols beforing pushing into clinical expert search index.
 documents = ATP_DOCUMENTS + NTS_DOCUMENTS

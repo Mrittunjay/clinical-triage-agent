@@ -124,9 +124,6 @@ def expert_triage(intake: dict) -> dict:
     """
 
     guidelines = _search_client.retrieve_guidelines(intake)
-    print("******************** expert_rag: guidelines ***********************")
-    print(guidelines)
-    print("*******************************************************************")
 
     if guidelines:
         try:
