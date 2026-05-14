@@ -74,6 +74,13 @@ def intake_message(payload: Dict[str, str]):
     # call receptionist agent
     receptionist_response = conversational_intake(INTAKE_SESSIONS[session_id])
 
+    # Handle blocked content
+    if receptionist_response.get("status") == "BLOCKED":
+        return {
+            "status": "BLOCKED",
+            "message": receptionist_response.get("message")
+        }
+
     if receptionist_response["status"] == "IN_PROGRESS":
         # store assistant message
         INTAKE_SESSIONS[session_id].append({
@@ -87,7 +94,8 @@ def intake_message(payload: Dict[str, str]):
         }
     
     # Intake complete -> now handoff to planner
-    intake = receptionist_response["intake"]
+    if receptionist_response.get("status") == "COMPLETE":
+        intake = receptionist_response["intake"]
 
     # Attach patient ID
     intake["patientId"] = session_id

@@ -1,5 +1,5 @@
 import os
-from openai import AzureOpenAI
+from openai import AzureOpenAI, BadRequestError
 from dotenv import load_dotenv
 
 # Load env vars once, at import time
@@ -21,27 +21,35 @@ def planner_llm(prompt: str) -> str:
     # print("client: ", client)
     # print("The deployment name: ", DEPLOYMENT_NAME)
 
-    response = client.chat.completions.create(
-        model=DEPLOYMENT_NAME,
-        messages=[
-            {
-                "role": "system",
-                "content": (
-                    "You are a clinical triage planner assigning medical professional. "
-                    "Do not make diagnosis. "
-                    "Classify urgency only (RED, YELLOW, GREEN) and explain reasoning."
-                )
-            },
-            {
-                "role": "user",
-                "content": prompt
-            }
-        ],
-        temperature=0.2
-    )
+    try:
+        response = client.chat.completions.create(
+            model=DEPLOYMENT_NAME,
+            messages=[
+                {
+                    "role": "system",
+                    "content": (
+                        "You are a clinical triage planner assigning medical professional. "
+                        "Do not make diagnosis. "
+                        "Classify urgency only (RED, YELLOW, GREEN) and explain reasoning."
+                    )
+                },
+                {
+                    "role": "user",
+                    "content": prompt
+                }
+            ],
+            temperature=0.2
+        )
 
-    # Access the content from the first choice
-    ai_reasoning = response.choices[0].message.content
+        return response.choices[0].message.content or ""
+
+        # # Access the content from the first choice
+        # ai_reasoning = response.choices[0].message.content
     
-    # print("The response from the LLM: ", ai_reasoning)
-    return ai_reasoning
+    except BadRequestError:
+        print("Open AI content filter triggered")
+        return "__CONTENT_BLOCKED__"
+    
+    except Exception as e:
+        print("Unexpected openAI error")
+        return ""   # Returning None creates issues
