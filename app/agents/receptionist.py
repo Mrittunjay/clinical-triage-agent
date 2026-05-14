@@ -75,6 +75,14 @@ def conversational_intake(chat_history: List[Dict[str, str]]) -> Dict[str, Any]:
     response = planner_llm(prompt)
     # print("LLM Response", response)
 
+    # When the input content is unsafe there it is blocked from content safety
+    # and the code crashes (the following code is to fix that)
+    if response == "__CONTENT_BLOCKED__":
+        return {
+            "status": "BLOCKED",
+            "message": "Please use safe and proper language !!"
+        }
+
     # if model returned json, we assume intake is complete
     response = response.strip()
     if response.startswith("{"):

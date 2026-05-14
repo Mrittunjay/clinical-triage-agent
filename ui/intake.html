@@ -232,6 +232,13 @@
 
     const data = await res.json();
 
+    // If user enters unsafe contant during intake the contant safety returns a blocked status (blocks the msg)
+    if (data.status === "BLOCKED") {
+      addMessage("Your input contains unsafe contant. Kindly use safe language", "assistant");
+      userInput.value = "";
+      return;
+    }
+
     // IN PROGRESS
     if (data.status === "IN_PROGRESS" && typeof data.message === "string") {
       addMessage(data.message, "assistant");
@@ -305,6 +312,19 @@
             font-weight:600;
           ">
             Content Safety Alert - Human Review Required
+          </div>
+        `;
+      } else {
+        safetyBanner = `
+          <div style="
+            margin-top:10px;
+            padding:10px;
+            background:#f0fdf4;
+            color:#166534;
+            border-radius:6px;
+            font-weight:600;
+          ">
+            Intake content is safe
           </div>
         `;
       }
